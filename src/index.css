@@ -1,0 +1,30 @@
+.inter-font {
+    font-family: 'Inter', sans-serif;
+}
+.auth-container {
+    background-image: url(../src/assets/auth-bg.png);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 100vw;   
+    height: 100vh;  
+}
+
+.bg-overlay{
+    background:linear-gradient(45deg,rgba(47,140,96,.7),rgba(0,0,0,.5))
+}
+.base-color{
+    color:#4AA35A;
+}
+
+.base-button{
+    background-color:#4AA35A;
+    color:white;
+    width:100%;
+    border:none;
+    border-radius: 8px;
+    padding-top:12px;
+    padding-bottom:12px;
+    font-size:20px;
+    weight:700;
+    }
