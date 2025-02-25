@@ -6,15 +6,16 @@ import SideBar from '../SideBar/SideBar'
 const MasterLayout = ({loginData}) => {
   return (
     <>
-     <div className='d-flex ' >
-        <div >
+     <div className='d-flex vh-100 ' >
+        
           <SideBar/>
-        </div>
-        <div className='w-100 mx-4 '>
+        
+        <div className='w-100 mx-4 d-flex flex-column'>
           <Navbar loginData={loginData}/>
           {/* <Header/> */}
-
-          <Outlet/>
+          <div className='overflow-y-auto'> 
+            <Outlet/>
+          </div>
         </div>
       </div>
     </>
