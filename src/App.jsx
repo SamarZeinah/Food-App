@@ -16,8 +16,24 @@ import CategoriesData from './modules/Categories/CategoriesData/CategoriesData'
 import UsersList from './modules/Users/Userslist/UsersList'
 import { ToastContainer, Bounce } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useEffect, useState } from 'react'
+import { jwtDecode } from 'jwt-decode'
+import ProtectedRoute from './modules/Shared/ProtectedRoute/ProtectedRoute'
 
 function App() {
+const[loginData,setloginData]=useState(null);
+
+const saveLoginData=()=>{
+  const encodedToken=localStorage.getItem('token');
+  const decodedToken=jwtDecode(encodedToken);
+  console.log("decodedToken",decodedToken);
+  setloginData(decodedToken);
+}
+useEffect(()=>{
+  if(localStorage.getItem('token')){
+    saveLoginData();
+  }
+},[])
 
   const routes = createBrowserRouter([
     {
@@ -25,7 +41,8 @@ function App() {
       element: <AuthLayout />,
       errorElement: <NotFound />,
       children: [
-        { path: '', element: <Login /> },
+        { path: '', element: <Login saveLoginData={saveLoginData}/> },
+        { path: 'login', element: <Login saveLoginData={saveLoginData}/>  },
         { path: 'register', element: <Register /> },
         { path: 'resetpass', element: <ResetPass /> },
         { path: 'changepass', element: <ChangePass /> },
@@ -36,7 +53,7 @@ function App() {
 
     {
       path: 'dashboard',
-      element: <MasterLayout />,
+      element: <ProtectedRoute><MasterLayout loginData={loginData} /></ProtectedRoute>,
       errorElement: <NotFound />,
       children: [
         { path: '', element: <Dashboard /> },

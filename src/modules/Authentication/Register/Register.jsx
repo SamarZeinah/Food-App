@@ -8,6 +8,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { toast, Bounce, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { baseUrl } from '../../../Services/urls'
 
 const Register = () => {
 
@@ -19,7 +20,7 @@ const OnSubmit=async(data)=>{
 
 //success
 try{
-const response=await axios.post('https://upskilling-egypt.com:3006/api/v1/Users/Create',data)
+const response=await axios.post(`${baseUrl}/Users/Create`,data)
 console.log(response);
 toast.success('register Successfully', {
   position: "top-center",
@@ -68,7 +69,7 @@ console.log(error.response.data.message);
                 </div>
 
                 <form onSubmit={handleSubmit(OnSubmit)}>
-                  <div className='row'>
+                  <div className='row sm-text-center'>
 
                   <div className='left-content col-12 col-md-6 d-grid gap-2'>
                     {/* UserName */}
@@ -205,9 +206,7 @@ console.log(error.response.data.message);
                     </div>
                   </div>
                   
-
-
-                <div className='d-flex justify-content-end mt-2'>
+                <div className='d-flex justify-content-end mt-2 '>
                  <a className='base-color text-decoration-none'  href='/'><p >Login Now?</p></a> 
                 </div>
                 <button className='base-button '>

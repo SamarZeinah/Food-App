@@ -18,6 +18,7 @@ import axios from 'axios'
 import { toast, Bounce, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useNavigate } from 'react-router-dom'
+import { baseUrl } from '../../../Services/urls'
 
 const VerifyAccount = () => {
   const{register,formState:{errors},handleSubmit}=useForm();
@@ -26,7 +27,7 @@ const VerifyAccount = () => {
     console.log(data);
     //success
     try{
-     const response=await axios.put('https://upskilling-egypt.com:3006/api/v1/Users/verify',data);
+     const response=await axios.put(`${baseUrl}/Users/verify`,data);
      toast.success('Password has been updated successfully', {
       position: "top-center",
       autoClose: 5000,

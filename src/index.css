@@ -16,6 +16,9 @@
 .base-color{
     color:#4AA35A;
 }
+.base-bg-color{
+    background-color:#4AA35A; 
+}
 
 .base-button{
     background-color:#4AA35A;
@@ -28,3 +31,76 @@
     font-size:20px;
     weight:700;
     }
+
+
+    /* start sidebar */
+    .sidebar-container .ps-menu-button:hover{
+        background-color:none;
+    }
+    .sidebar-container .ps-sidebar-container{
+        background-color:#1F263E;
+        color:white;
+        min-height: 100vh; 
+        border-top-right-radius:40px;
+
+    }
+   
+    .sidebar-container .ps-menu-button:hover {
+        background-color: rgba(0, 146, 71, 0.1)!important;
+        border-left:5px solid rgba(0, 146, 71, 0.7);
+    }
+    .sidebar-container .logo-li img  {
+       width:100px;
+       height:50px;
+    }
+    
+    .sidebar-container .logo-li a:hover{
+        background-color: transparent !important;
+        border:none;
+        }
+    /* EndSidebar */
+    /* start catecories */
+    
+    .data-container .table thead th {
+        background-color: rgba(226, 229, 235, 1) !important;
+        padding:20px;
+      }
+      .data-container .table thead th:first-child{
+        border-radius:15px 0px 0px 15px;
+      }
+      .data-container .table thead th:last-child{
+        border-radius: 0px 15px  15px  0px;
+      }
+      
+      .data-container tbody,
+      .data-container td, 
+      .data-container tfoot, 
+      .data-container th,
+      .data-container thead,
+      .data-container tr {
+        border-style: none;
+    }
+    .data-container tbody tr .ddd{
+        background-color:red;
+    }
+
+   
+
+      .data-container .table tbody tr:nth-child(even) {
+        background-color:#4AA35A !important; 
+    }
+
+      .data-container .dropdown-item:active {
+        background-color: transparent !important; 
+        color: white !important;
+      }
+      
+      .recipeImg {
+        max-width: 100px;
+        max-height: 100px;
+        width: auto;
+        height: auto;
+    }
+    
+      
+    /* End catecories */
