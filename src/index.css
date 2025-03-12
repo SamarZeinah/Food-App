@@ -16,8 +16,12 @@
 .base-color{
     color:#4AA35A;
 }
+
 .base-bg-color{
     background-color:#4AA35A; 
+}
+.base-light-bg{
+  background-color: rgba(240, 255, 239, 1) 
 }
 
 .base-button{
@@ -31,7 +35,22 @@
     font-size:20px;
     weight:700;
     }
+    .base-delete-button{
+      outline:rgba(204, 0, 0, 1);
+      border:2px solid rgba(204, 0, 0, 1);
+      border-radius:7px;
+      padding-top:5px;
+      padding-bottom:5px;
+      background:none;
+      color:rgba(204, 0, 0, 1);
+      font-weight:500;
+      
+    }
+    .base-delete-button:hover{
+      background:rgba(204, 0, 0, 1);
+      color:white;
 
+    }
 
     /* start sidebar */
     .sidebar-container .ps-menu-button:hover{
@@ -58,49 +77,151 @@
         background-color: transparent !important;
         border:none;
         }
+      
     /* EndSidebar */
-    /* start catecories */
     
-    .data-container .table thead th {
-        background-color: rgba(226, 229, 235, 1) !important;
-        padding:20px;
-      }
-      .data-container .table thead th:first-child{
-        border-radius:15px 0px 0px 15px;
-      }
-      .data-container .table thead th:last-child{
-        border-radius: 0px 15px  15px  0px;
-      }
-      
-      .data-container tbody,
-      .data-container td, 
-      .data-container tfoot, 
-      .data-container th,
-      .data-container thead,
-      .data-container tr {
-        border-style: none;
-    }
-    .data-container tbody tr .ddd{
-        background-color:red;
-    }
+   /* start categories */
+.data-container {
+  overflow-x: auto;
+}
 
-   
+.table {
+  width: 100%; 
+  table-layout: fixed; 
+  border-collapse: collapse;
+}
 
-      .data-container .table tbody tr:nth-child(even) {
-        background-color:#4AA35A !important; 
-    }
+.table th, .table td {
+  padding: 8px; 
+  font-size: 14px;
+}
 
-      .data-container .dropdown-item:active {
-        background-color: transparent !important; 
-        color: white !important;
-      }
+.recipeImg {
+  width: 60px;
+  height: 60px; 
+  border-radius:10px;
+}
+
+.table th {
+  font-size: 12px;
+}
+
+.dropdown-menu {
+  position: relative;
+  width: auto;
+  min-width: 120px;
+}
+
+.data-container .table thead th {
+  background-color: rgba(226, 229, 235, 1) !important;
+  padding: 20px;
+}
+
+.data-container .table thead th:first-child {
+  border-radius: 15px 0px 0px 15px;
+}
+
+.data-container .table thead th:last-child {
+  border-radius: 0px 15px 15px 0px;
+}
+
+.data-container tbody,
+.data-container td, 
+.data-container tfoot, 
+.data-container th,
+.data-container thead,
+.data-container tr {
+  border-style: none;
+}
+
+.data-container tbody tr .ddd {
+  background-color: red;
+}
+
+.data-container .table tbody tr:nth-child(even) {
+  background-color: #4AA35A !important;
+}
+
+.data-container .dropdown-item:active {
+  background-color: transparent !important;
+  color: white !important;
+}
+/* .data-container .table tbody tr:nth-child(even) {
+  background-color: #d4edda !important; 
+} */
+/* Media Queries */
+@media (max-width: 768px) {
+  .table th, .table td {
+    padding: 8px;
+    font-size: 14px;
+  }
+  
+  .recipeImg {
+    width: 80px;
+    height: 60px;
+  }
+
+  .table th {
+    font-size: 12px;
+  }
+
+  .dropdown-menu {
+    position: relative;
+    width: auto;
+    min-width: 120px;
+  }
+
+  .table {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 480px) {
+  .table th, .table td {
+    padding: 5px;
+    font-size: 12px;
+  }
+
+  .table th {
+    font-size: 10px;
+  }
+
+  .dropdown-menu {
+    min-width: 100px;
+  }
+}
+
+
+/* End categories */
+
+    /* start modal */
+    .modal-content {
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      border-radius: 8px; 
       
-      .recipeImg {
-        max-width: 100px;
-        max-height: 100px;
-        width: auto;
-        height: auto;
+  }
+    .modal-header .btn-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      color: #000 !important;
+      z-index: 1050; 
     }
-    
+    .modal-header .btn-close-delete{
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      z-index:1050; 
+      font-size: 1rem;
+      border-radius:50%;
+      color: rgba(204, 0, 0, 1) !important;
+      border:2px solid rgba(204, 0, 0, 1);
+      background:transparent;
+        }
+        /* End modal */
+
       
-    /* End catecories */

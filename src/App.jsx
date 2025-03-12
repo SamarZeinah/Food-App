@@ -19,7 +19,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { useEffect, useState } from 'react'
 import { jwtDecode } from 'jwt-decode'
 import ProtectedRoute from './modules/Shared/ProtectedRoute/ProtectedRoute'
-
+import FillRecipes from './modules/FillRecipes/FillRecipes'
 function App() {
 const[loginData,setloginData]=useState(null);
 
@@ -45,7 +45,7 @@ useEffect(()=>{
         { path: 'login', element: <Login saveLoginData={saveLoginData}/>  },
         { path: 'register', element: <Register /> },
         { path: 'resetpass', element: <ResetPass /> },
-        { path: 'changepass', element: <ChangePass /> },
+        // { path: 'changepass', element: <ChangePass /> },
         { path: 'forgetpass', element: <ForgetPass /> },
         { path: 'verifyaccount', element: <VerifyAccount /> }
       ]
@@ -61,9 +61,11 @@ useEffect(()=>{
         { path: 'recipedata', element: <RecipesData /> },
         { path: 'categories', element: <CategoriesData /> },
         { path: 'category', element: <CategoriesList /> },
-        { path: 'users', element: <UsersList /> }
+        { path: 'users', element: <UsersList /> },
+        { path: 'FillRecipes', element: <FillRecipes /> }
       ]
-    }
+    },
+  
   ])
 
   return<>

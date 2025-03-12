@@ -6,7 +6,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { toast, Bounce, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { baseUrl } from '../../../Services/urls'
+import {  publicAxiosInstance, USER_URLS } from '../../../Services/urls'
 import { EMAIL_VALIDATION } from '../../../Services/validations'
 import { PASSWORD_VALIDATION } from '../../../Services/validations'
 
@@ -22,7 +22,9 @@ const OnSubmit=async(data)=>{
 
 //success
 try{
-const response=await axios.post(`${baseUrl}/Users/Login`,data)
+// const response=await axios.post(`${baseUrl}/Users/Login`,data)
+const response=await publicAxiosInstance.post(USER_URLS.LOGIN,data)
+
 console.log(response);
 localStorage.setItem('token',response.data.token);
 

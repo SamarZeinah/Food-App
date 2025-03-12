@@ -6,7 +6,7 @@ import axios from 'axios'
 import { toast, Bounce, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { baseUrl } from '../../../Services/urls'
+import { baseUrl, publicAxiosInstance, USER_URLS } from '../../../Services/urls'
 import { CONFIRMPASSWORD_VALIDATION, EMAIL_VALIDATION, OTP_VALIDATION, PASSWORD_VALIDATION } from '../../../Services/validations'
 
 const ResetPass = () => {
@@ -28,7 +28,8 @@ const ResetPass = () => {
     console.log(data);
     //success
     try{
-     const response=await axios.post(`${baseUrl}/Users/Reset`,data);
+    //  const response=await axios.post(`${baseUrl}/Users/Reset`,data);
+    const response=await publicAxiosInstance.post(USER_URLS.RESET_PASSWORD,data);
      toast.success('Password has been updated successfully', {
       position: "top-center",
       autoClose: 5000,

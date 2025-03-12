@@ -18,7 +18,7 @@ import axios from 'axios'
 import { toast, Bounce, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useNavigate } from 'react-router-dom'
-import { baseUrl } from '../../../Services/urls'
+import { baseUrl, publicAxiosInstance, USER_URLS } from '../../../Services/urls'
 
 const VerifyAccount = () => {
   const{register,formState:{errors},handleSubmit}=useForm();
@@ -27,7 +27,8 @@ const VerifyAccount = () => {
     console.log(data);
     //success
     try{
-     const response=await axios.put(`${baseUrl}/Users/verify`,data);
+    //  const response=await axios.put(`${baseUrl}/Users/verify`,data);
+    const response=await publicAxiosInstance.put(USER_URLS.VERIFY_ACCOUNT,data);
      toast.success('Password has been updated successfully', {
       position: "top-center",
       autoClose: 5000,

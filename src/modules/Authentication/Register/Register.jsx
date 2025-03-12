@@ -8,7 +8,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { toast, Bounce, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { baseUrl } from '../../../Services/urls'
+import { baseUrl, privateAxiosInstance, USER_URLS } from '../../../Services/urls'
 
 const Register = () => {
 
@@ -20,7 +20,9 @@ const OnSubmit=async(data)=>{
 
 //success
 try{
-const response=await axios.post(`${baseUrl}/Users/Create`,data)
+// const response=await axios.post(`${baseUrl}/Users/Create`,data)
+const response=await privateAxiosInstance.post(USER_URLS.REGISTER,data)
+
 console.log(response);
 toast.success('register Successfully', {
   position: "top-center",
@@ -55,14 +57,7 @@ console.log(error.response.data.message);
 
   return (
     <>
-      <div className='auth-container '>
-        <div className='container-fluid bg-overlay '>
-        <div className="row vh-100 justify-content-center align-items-center">
-        <div className="col-10 col-md-8 col-lg-6 bg-white rounded">
-              <div className=' mx-5 my-5 ' >
-                <div className='text-center' >
-                  <img className="w-50 "src={Logo} alt='Logo'/> 
-                </div>
+   
                 <div className='mt-4' >
                   <h3 className="inter-font fw-bold fs-4 lh-base">Register</h3>
                   <p className="inter-font text-secondary fw-normal fs-6 lh-sm">Welcome Back! Please enter your details</p>
@@ -213,13 +208,7 @@ console.log(error.response.data.message);
                 Register
                 </button>
                 </form>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
+             
     </>
   )
 }

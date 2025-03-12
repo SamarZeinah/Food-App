@@ -26,6 +26,8 @@ export const CONFIRMPASSWORD_VALIDATION={
     required: "confirmPassword is required",
     pattern: {
       value: /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!&$%&? "]).{6,}$/,
-      message: "confirmPassword must match Password ",
+      // message: "confirmPassword must match Password ",
+      message: "confirmPassword must be at least 6 characters and include letters, numbers, and special characters",
+
     },
 }
