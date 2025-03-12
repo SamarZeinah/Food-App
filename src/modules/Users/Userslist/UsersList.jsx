@@ -1,19 +1,3 @@
-// import React from 'react'
-// import Header from '../../Shared/Header/Header'
-// import userHeader from '../../../assets/userheader.png'
-// const UsersList = () => {
-//   return (
-//     <div>
-//        <Header title={'Users'}span={'List!'} description={'You can now add your items that any user can order it from the Application and you can edit'} img={userHeader}/>
-//       UsersList
-      
-//     </div>
-//   )
-// }
-
-// export default UsersList
-
-
 import React, { useEffect, useState } from 'react';
 import userHeader from '../../../assets/userheader.png';
 import Header from '../../Shared/Header/Header';
@@ -33,7 +17,7 @@ const UsersList = () => {
   // Fetch Users
   const GetUsers = async () => {
     try {
-      const response = await privateAxiosInstance.get(`/Users/?country=Egypt&groups=1&pageSize=10&pageNumber=1`, {
+      const response = await privateAxiosInstance.get(`/Users/?pageSize=10&pageNumber=1`, {
       });
       setUsersList(response.data.data);
     } catch (error) {
@@ -43,17 +27,17 @@ const UsersList = () => {
     }
   };
 
-  // Delete Recipe
+  // Delete User
   const deleteUser = async () => {
     if (userToDelete) {
       try {
         await privateAxiosInstance.delete(`/Users/${userToDelete}`);
         GetUsers(); // Refresh the list after deletion
         setShowDeleteConfirmation(false); // Close the modal after deletion
-        toast.success(`recipe of id ${recipeToDelete} delete Successfully`);
+        toast.success(`User of id ${recipeToDelete} delete Successfully`);
         
       } catch (error) {
-        toast.error(error.response?.data?.error || 'Failed to delete recipe');
+        toast.error(error.response?.data?.error || 'Failed to delete User');
       }
     }
   };
