@@ -59,14 +59,14 @@ const VerifyAccount = () => {
     }
   return (
     <>
-      <div className='auth-container'>
+      {/* <div className='auth-container'>
         <div className='container-fluid bg-overlay'>
           <div className='row vh-100 justify-content-center align-items-center'>
             <div className='ol-8 col-md-5 bg-white rounded'>
-              <div className='mx-5 my-5'>
-                  <div className='text-center' >
+              <div className='mx-5 my-5'> */}
+                  {/* <div className='text-center' >
                   <img className="w-50 "src={Logo} alt='Logo'/> 
-                </div>
+                </div> */}
                 <div className='mt-4' >
                   <h3 className='inter-font' style={{ weight:'700',fontSize:'25px', lineHeight:'30.26px'}}>  Verify Account  </h3>
                   <p className='inter-font text-secondary' style={{ weight:'400',fontSize:'16px', lineHeight:'19.36px'}}>Please Enter Your Otp  or Check Your Inbox </p>
@@ -115,13 +115,13 @@ const VerifyAccount = () => {
                 Send
                 </button>
                 </form>
-              </div>
+              {/* </div>
             </div>
           </div>
 
         </div>
 
-      </div>
+      </div> */}
     </>
   )
 }

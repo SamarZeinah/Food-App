@@ -35,7 +35,9 @@ toast.success('register Successfully', {
   theme: "light",
   transition: Bounce,
   });
-navigate('/verifyaccount')
+  setTimeout(() => {
+    navigate("/verifyaccount");
+  }, 2000);
 
 }
 //error

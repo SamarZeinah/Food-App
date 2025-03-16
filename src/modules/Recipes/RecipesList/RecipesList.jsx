@@ -35,7 +35,7 @@ const RecipesList = () => {
   console.log("categoryValue",categoryValue);
 
   // Fetch Recipes
-  const GetRecipes = async (pageSize,pageNumber,name,tag,cat) => {
+  const GetRecipes = async (pageSize,pageNumber,name,tagId,categoryId) => {
     try {
       // const response = await privateAxiosInstance.get(`/Category/?pageSize=10&pageNumber=1`, {
       const response = await privateAxiosInstance.get(RECIPES_LIST.GET_RECIPES, {
@@ -43,8 +43,8 @@ const RecipesList = () => {
           pageSize:pageSize,
           pageNumber:pageNumber,
           name:name,
-          tag:tag,
-          cat:cat
+          tagId:tagId,
+          categoryId:categoryId
         }
       });
       setRecipesList(response.data.data);
@@ -118,9 +118,9 @@ const RecipesList = () => {
         SetName(value); 
     
       if (value.trim() === "") {
-        GetRecipes(4, 1, "", tagValue,categoryValue);
+        GetRecipes(4, 1, "",tagValue,categoryValue);
       } else {
-        GetRecipes(4, 1, value, tagValue, categoryValue);
+        GetRecipes(4, 1, value,tagValue,categoryValue);
       }
     };
 
@@ -149,7 +149,7 @@ const RecipesList = () => {
       if(selectedCategoryId.trim()===""){
         GetRecipes(4, 1, name, tagValue,"");
       }else{
-        GetRecipes(4, 1, name, tagValue,categoryValue);
+        GetRecipes(4, 1, name,tagValue,categoryValue);
       }
     };
 

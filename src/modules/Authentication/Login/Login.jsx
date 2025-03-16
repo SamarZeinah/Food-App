@@ -28,7 +28,7 @@ const response=await publicAxiosInstance.post(USER_URLS.LOGIN,data)
 console.log(response);
 localStorage.setItem('token',response.data.token);
 
-toast.success('Data Sent Successfully', {
+  toast.success(response.data.message||"Logged Successfully", {
   position: "top-center",
   autoClose: 5000,
   hideProgressBar: false,
