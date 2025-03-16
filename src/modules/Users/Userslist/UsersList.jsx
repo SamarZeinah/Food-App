@@ -7,6 +7,8 @@ import Fallback_img from '../../../assets/fallback image.jpg'
 import { toast } from 'react-toastify';
 import { baseUrl, Photo_baseUrl, privateAxiosInstance, RECIPES_LIST } from '../../../Services/urls';
 import DeleteConfirmation from '../../Shared/DeleteConfirmation/DeleteConfirmation';
+import Pagination from '../../Shared/Pagination/Pagination';
+
 
 const UsersList = () => {
   const [usersList, setUsersList] = useState([]);
@@ -14,12 +16,19 @@ const UsersList = () => {
   const [userToDelete, setUserToDelete] = useState(null);
   const[loading,setLoading]=useState(true);
   console.log("usersList",usersList);
+  const[arrayOfPages,setArrayOfPages]=useState([]);
   // Fetch Users
-  const GetUsers = async () => {
+  const GetUsers = async (pageSize,pageNumber) => {
     try {
-      const response = await privateAxiosInstance.get(`/Users/?pageSize=10&pageNumber=1`, {
+      const response = await privateAxiosInstance.get(`/Users/`, {
+        params:{
+          pageSize:pageSize,
+          pageNumber:pageNumber
+        }
       });
       setUsersList(response.data.data);
+      setArrayOfPages(Array(response.data.totalNumberOfPages).fill().map((_,index)=>index+1))
+
     } catch (error) {
       toast.error(error.response?.data?.message || 'Failed to fetch Users');
     }finally{
@@ -43,9 +52,13 @@ const UsersList = () => {
   };
 
   useEffect(() => {
-    GetUsers();
+    GetUsers(4,1);
   }, []);
 
+  //pagination
+  const handlePageChange = (pageNumber) => {
+    GetUsers(4, pageNumber);
+  };
   return (
     <div>
       <Header title={'Users'}span={'List!'} description={'You can now add your items that any user can order it from the Application and you can edit'} img={userHeader}/>
@@ -120,6 +133,9 @@ const UsersList = () => {
           onConfirm={deleteUser}
         />
       )}
+      {/* pagination */}
+  <Pagination arrayOfPages={arrayOfPages} onPageChange={handlePageChange}/>
+
     </div>
   );
 };

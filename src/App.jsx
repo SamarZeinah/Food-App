@@ -19,7 +19,6 @@ import 'react-toastify/dist/ReactToastify.css'
 import { useEffect, useState } from 'react'
 import { jwtDecode } from 'jwt-decode'
 import ProtectedRoute from './modules/Shared/ProtectedRoute/ProtectedRoute'
-import FillRecipes from './modules/FillRecipes/FillRecipes'
 function App() {
 const[loginData,setloginData]=useState(null);
 
@@ -58,11 +57,11 @@ useEffect(()=>{
       children: [
         { path: '', element: <Dashboard /> },
         { path: 'recipes', element: <RecipesList /> },
-        { path: 'recipedata', element: <RecipesData /> },
+        { path: 'recipedata/new-recipe', element: <RecipesData /> },
+        { path: 'recipedata/:recipeId', element: <RecipesData /> },
         { path: 'categories', element: <CategoriesData /> },
         { path: 'category', element: <CategoriesList /> },
         { path: 'users', element: <UsersList /> },
-        { path: 'FillRecipes', element: <FillRecipes /> }
       ]
     },
   

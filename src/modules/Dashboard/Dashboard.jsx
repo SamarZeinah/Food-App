@@ -15,7 +15,7 @@ const Dashboard = () => {
              click here and sill it with the table !</p>
         </div>
         <div className='button'>
-          <button onClick={()=>navigate('/dashboard/FillRecipes')} className='base-button px-5 text-nowrap'>Fill Recipes <i className="fa-solid fa-arrow-right"></i></button>
+          <button onClick={()=>navigate('/dashboard/recipes')} className='base-button px-5 text-nowrap'>Fill Recipes <i className="fa-solid fa-arrow-right"></i></button>
         </div>
       </div>
     </>

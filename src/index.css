@@ -224,4 +224,43 @@
         }
         /* End modal */
 
+      /* start pagination */
+      .pagination{
+
+        --bs-pagination-focus-box-shadow: none !important; 
+      
+      }
+      .page-link,
+      .page-item,
+      .pageItem button{
+        border-radius:5px;
+        margin-right:5px;
+        outline: none !important; 
+            }
+      .page-link a,
+      .page-item button,
+      .page-item a
+      {
+        color:white !important;
+        background:#4AA35A;
+        font-weight:bold;
+        border:none !important;
+        border-radius:5px;
+            }
+      .page-link:hover,
+      .page-link:focus  {
+        background: #388E3C !important; 
+        transform: scale(1.1) !important;
+        color: white !important;
+      }  
+    
+               /* End pagination */
+      /* start FileUpload */
+      .css-1agvk75 {
+        background-color:rgba(241, 255, 240, 1) !important;
+        border-color: #4AA35A !important;
+        min-height: 164px  !important;
+        margin-bottom:3rem;
+      }
+      /* End FileUpload */
       

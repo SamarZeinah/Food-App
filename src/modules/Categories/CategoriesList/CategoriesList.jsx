@@ -9,7 +9,7 @@ import { baseUrl, CATEGORIES_LIST, privateAxiosInstance, publicAxiosInstance } f
 import DeleteConfirmation from '../../Shared/DeleteConfirmation/DeleteConfirmation'
 import { useForm } from 'react-hook-form'
 import AddModal from '../../Shared/AddModal/AddModal';
-
+import Pagination from '../../Shared/Pagination/Pagination'
 const CategoriesList = () => {
 
 const[categoriesList,setcategoriesList]=useState([]);
@@ -18,7 +18,8 @@ const[categoriesList,setcategoriesList]=useState([]);
   const [showAddModal, setShowAddModal] = useState(false);
   const[loading,setLoading]=useState(true);
   const [categoryToEdit, setCategoryToEdit] = useState(null);
-
+  const[arrayOfPages,setArrayOfPages]=useState([]);
+  const[name,SetName]=useState("");
 const{register,formState:{errors,isSubmitting},handleSubmit,setValue,reset}=useForm()
 
 const OnSubmit=async(data)=>{
@@ -42,26 +43,20 @@ try{
 }
 }
 
-// Edit Category
-// const EditCategory=async()=>{
-//   if(categoryToEdit){
-//     try{
-//       const response =await publicAxiosInstance.put(`/Category/${categoryToEdit}`);
-//       toast.success(response.data.message);
-
-//     }catch(error){
-//   toast.error(response.data.error);
-//     }
-//   }
-// }
-
 //Get Categories
-const GetAllCategories=async()=>{
+const GetAllCategories=async(pageSize,pageNumber,name)=>{
   try{
-    const response=await privateAxiosInstance.get(CATEGORIES_LIST.GET_CATEGORIES,
+    const response=await privateAxiosInstance.get(CATEGORIES_LIST.GET_CATEGORIES,{
+      params:{
+        pageSize:pageSize,
+        pageNumber:pageNumber,
+        name:name
+      }
+    }
     )
     console.log("Categories response",response.data.data);
     setcategoriesList(response.data.data);
+    setArrayOfPages(Array(response.data.totalNumberOfPages).fill().map((_,index)=>index+1))
   }
   catch(error){
   toast.error(error.response.data.message)
@@ -90,9 +85,23 @@ const deleteCategory=async()=>{
 
 
 useEffect(()=>{
-  GetAllCategories();
+  GetAllCategories(4,1);
 },[]);
+//pagination
+const handlePageChange = (pageNumber) => {
+  GetAllCategories(4, pageNumber);
+};
+const getNameValue=(e)=>{
+  const value=(e.target.value);
+  SetName(value);
+  if(value.trim===""){
+    GetAllCategories(4,1,"");
 
+  }else{
+    GetAllCategories(4,1,value);
+
+  }
+}
   return (
     <div >
       <Header title={'Categories'}span={'Item'} description={'You can now add your items that any user can order it from the Application and you can edit'} img={userHeader}/>
@@ -106,6 +115,20 @@ useEffect(()=>{
         </div>
 
       </div>
+      {/*  Search Bar */}
+      <div className="input-group w-auto mb-3 ">
+          <span className="input-group-text" id="basic-addon1">
+            <i className="fa-solid fa-magnifying-glass"></i>
+          </span>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search here ..." 
+            aria-label="Search" 
+            aria-describedby="basic-addon1"
+            onChange={getNameValue}
+          />
+        </div>
       <div className='data-container'>
       <table className="table">
         <thead >
@@ -200,7 +223,8 @@ useEffect(()=>{
           onConfirm={deleteCategory}
       />)}
 
-   
+    {/* pagination */}
+    <Pagination arrayOfPages={arrayOfPages} onPageChange={handlePageChange}/>
     </div>
     
   )

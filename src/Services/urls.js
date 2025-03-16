@@ -21,12 +21,18 @@ export const USER_URLS={
 }
 
 export const RECIPES_LIST={
-    GET_RECIPES:`/Recipe/?pageSize=10&pageNumber=1`,
+    GET_RECIPES:`/Recipe/`,
+
     DELETE_RECIPES:(id)=>`/Recipe/${id}`
 
 }
 export const CATEGORIES_LIST={
-    GET_CATEGORIES:`/Category/?pageSize=10&pageNumber=1`,
+    GET_CATEGORIES:`/Category/`,
     DELETE_CATEGORY: (id) => `/Category/${id}`,
+
+}
+export const Tags={
+    GET_TAGS:`/tag/`,
+    
 
 }
