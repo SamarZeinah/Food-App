@@ -53,7 +53,7 @@ const UsersList = () => {
         await privateAxiosInstance.delete(`/Users/${userToDelete}`);
         GetUsers(); // Refresh the list after deletion
         setShowDeleteConfirmation(false); // Close the modal after deletion
-        toast.success(`User of id ${recipeToDelete} delete Successfully`);
+        toast.success(`User of id ${userToDelete} delete Successfully`);
         
       } catch (error) {
         toast.error(error.response?.data?.error || 'Failed to delete User');
@@ -203,7 +203,7 @@ const UsersList = () => {
                   </td>
                   <td>{user.email}</td>
                   <td>{user.country}</td>
-                  <td>{user.group.id}</td>
+                  <td>{user.group.name}</td>
 
                   <td>
                     <div className="dropdown">

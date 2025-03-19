@@ -31,3 +31,25 @@ export const CONFIRMPASSWORD_VALIDATION={
 
     },
 }
+export const USER_NAME_VALIDATION={
+    required: "Username is required",
+    pattern: {
+      value: /^(?=.*[A-Za-z])[A-Za-z0-9]*[0-9]$/,
+      message: "Username must contain letters and end with a number without spaces"
+    }
+    
+}
+export const COUNTRY_VALIDATION={
+  required: "country  is required",
+  pattern: {
+    value: /^[A-Za-z\s]+$/,
+    message: "Country must contain only letters and spaces",
+  },
+}
+
+export const PHONE_VALIDATION={
+  required: "Phone is required",
+  pattern: {
+    value: /^\(?([0-9]{4})\)?[-.\s]?([0-9]{3})[-.\s]?([0-9]{4})$/,
+    message: "Please enter a valid phone number in the format (123) 456-7890",                        },
+}

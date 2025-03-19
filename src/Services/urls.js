@@ -13,7 +13,7 @@ export const privateAxiosInstance=axios.create({
 })
 export const USER_URLS={
     LOGIN:`/Users/Login`,
-    REGISTER:`/Users/Create`,
+    REGISTER:`/Users/Register`,
     FORGET_PASSWORD:`/Users/Reset/Request`,
     RESET_PASSWORD:`/Users/Reset`,
     CHANGE_PASSWORD:`/Users/ChangePassword`,
