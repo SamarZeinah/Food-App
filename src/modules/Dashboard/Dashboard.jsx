@@ -3,11 +3,14 @@ import Header from '../Shared/Header/Header'
 import Headerimg from '../../assets/Headerimg.png'
 import { useNavigate } from 'react-router-dom'
 
-const Dashboard = () => {
+const Dashboard = ({getLoginData}) => {
+  const loginData=getLoginData();
+
+  console.log("logindata from Dashboard",loginData);
   const navigate=useNavigate();
   return (
     <>
-      <Header title={'Welcome'}span={'Upskilling!'} description={'This is a welcoming screen for the entry of the application ,you can now see the options'} img={Headerimg}/>
+      <Header title={'Welcome'}span={loginData?.userName} description={'This is a welcoming screen for the entry of the application ,you can now see the options'} img={Headerimg}/>
       <div className='base-light-bg rounded d-flex justify-content-between my-5 text-md-start flex-md-row flex-column text-center p-5 '>
         <div className='content'>
           <h3>Fill the <span className='base-color'>Recipes</span> !</h3>

@@ -20,6 +20,7 @@ import { useEffect, useState } from 'react'
 import { jwtDecode } from 'jwt-decode'
 import ProtectedRoute from './modules/Shared/ProtectedRoute/ProtectedRoute'
 import Favorites from './modules/Favorites/Favorites'
+import Profile from './modules/profile/Profile'
 function App() {
 // const[loginData,setloginData]=useState(null);
 const[loginData,setloginData]=useState(()=>{
@@ -32,7 +33,11 @@ const saveLoginData=()=>{
   const encodedToken=localStorage.getItem('token');
   const decodedToken=jwtDecode(encodedToken);
   localStorage.setItem('decodedToken',JSON.stringify(decodedToken));
-  setloginData(decodedToken);
+  // setloginData(decodedToken);
+}
+const getLoginData=()=>{
+  const token=localStorage.getItem('token');
+  return token?jwtDecode(token):null;
 }
 useEffect(()=>{
   if(localStorage.getItem('token')){
@@ -58,10 +63,10 @@ useEffect(()=>{
 
     {
       path: 'dashboard',
-      element: <ProtectedRoute><MasterLayout loginData={loginData} /></ProtectedRoute>,
+      element: <ProtectedRoute><MasterLayout getLoginData={getLoginData} /></ProtectedRoute>,
       errorElement: <NotFound />,
       children: [
-        { path: '', element: <Dashboard /> },
+        { path: '', element: <Dashboard getLoginData={getLoginData}/> },
         { path: 'recipes', element: <RecipesList /> },
         { path: 'recipedata/new-recipe', element: <RecipesData /> },
         { path: 'recipedata/:recipeId', element: <RecipesData /> },
@@ -69,6 +74,7 @@ useEffect(()=>{
         { path: 'category', element: <CategoriesList /> },
         { path: 'favorites', element: <Favorites /> },
         { path: 'users', element: <UsersList /> },
+        { path: 'profile', element: <Profile /> },
       ]
     },
   

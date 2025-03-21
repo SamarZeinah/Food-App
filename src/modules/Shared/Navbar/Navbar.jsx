@@ -2,7 +2,11 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import ChangePassModal from '../../Authentication/Change-pass/ChangePass';
 import { useState } from 'react';
-const Navbar = ({loginData}) => {
+import { Photo_baseUrl } from '../../../Services/urls';
+import profile_img from '../../../assets/12154165.png';
+const Navbar = ({getLoginData}) => {
+  const loginData=getLoginData();
+
   console.log("logindata from Navbar",loginData);
   const navigate=useNavigate();
   const[showChangePass,setShowChangePass]=useState(false);
@@ -15,6 +19,14 @@ const Navbar = ({loginData}) => {
     </button>
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li onClick={()=>navigate('/dashboard/profile')}>
+        <img 
+          src={loginData?.imagePath ? `${Photo_baseUrl}/${loginData.imagePath}` : profile_img} 
+          className="profile-img" 
+          alt={loginData?.name || "Default Image"} 
+        />
+
+        </li>
         <li className="nav-item">
           <a className="nav-link active" aria-current="page" >{loginData?.userName}</a>
         </li>
@@ -23,7 +35,7 @@ const Navbar = ({loginData}) => {
             
           </a>
           <ul className="dropdown-menu dropdown-menu-end">
-            <li><a className="dropdown-item "><i className="fa-solid fa-user"></i> Profile</a></li>
+            <li><a className="dropdown-item " onClick={()=>navigate('/dashboard/profile')}><i className="fa-solid fa-user"></i> Profile</a></li>
             <li><a className="dropdown-item" onClick={()=>setShowChangePass(true)}><i className="fa-solid fa-lock-open"></i> ChangePassword</a></li>
             <li><a className="dropdown-item" onClick={()=>navigate('/login')}><i className="fa-solid fa-right-from-bracket"  ></i> LogOut </a></li>
           </ul>

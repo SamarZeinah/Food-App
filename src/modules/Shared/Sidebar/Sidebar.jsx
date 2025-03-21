@@ -5,7 +5,8 @@ import dashlogo from '../../../assets/dashlogo.png'
 import ChangePassModal from '../../Authentication/Change-pass/ChangePass';
 import columnsgap from '../../../assets/columns-gap.png'
 
-const SideBar = ({loginData}) => {
+const SideBar = ({getLoginData}) => {
+  const loginData=getLoginData();
   console.log("logindata from sidebar",loginData?.userGroup);
 
   let navigate=useNavigate()
