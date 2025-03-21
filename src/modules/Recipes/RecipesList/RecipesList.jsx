@@ -9,6 +9,7 @@ import { baseUrl, Photo_baseUrl,CATEGORIES_LIST, privateAxiosInstance, RECIPES_L
 import DeleteConfirmation from '../../Shared/DeleteConfirmation/DeleteConfirmation';
 import Pagination from '../../Shared/Pagination/Pagination';
 import { useNavigate } from 'react-router-dom'
+import ViewRecipe from './ViewRecipe';
 
 const RecipesList = () => {
   const [recipesList, setRecipesList] = useState([]);
@@ -24,6 +25,10 @@ const RecipesList = () => {
   const[name,SetName]=useState("");
   const[tagValue,SetTagValue]=useState("")
   const[categoryValue,SetCategoryValue]=useState("")
+  const[viewRecipeId,setViewRecipeId]=useState("")
+  const[showRecipe,setShowRecipe]=useState(false);
+  const[loginData,setLoginData]=useState(null);
+console.log("showRecipe",showRecipe)
   const navigate=useNavigate();
   
 
@@ -33,6 +38,8 @@ const RecipesList = () => {
   console.log("name",name);
   console.log("tagValue",tagValue);
   console.log("categoryValue",categoryValue);
+  console.log("viewRecipeId",viewRecipeId);
+
 
   // Fetch Recipes
   const GetRecipes = async (pageSize,pageNumber,name,tagId,categoryId) => {
@@ -106,6 +113,8 @@ const RecipesList = () => {
     GetRecipes(4,1);
     GetAllTags();
     GetAllCategories();
+    console.log( "decodedToken from recipelist", JSON.parse(localStorage.getItem('decodedToken')) )
+    setLoginData(JSON.parse(localStorage.getItem('decodedToken')) );
   }, []);
 
   //pagination
@@ -152,6 +161,11 @@ const RecipesList = () => {
         GetRecipes(4, 1, name,tagValue,categoryValue);
       }
     };
+  //add Recipe To fav
+  const AddToFavourite = async (recipeId) => {
+    console.log("AddToFavourite")
+  };
+  
 
   return (
     <div>
@@ -161,9 +175,11 @@ const RecipesList = () => {
           <h3>Recipe Table Details</h3>
           <p>You can check all details</p>
         </div>
+        {loginData?.userGroup!='SystemUser'?
         <div className='button'>
           <button className='base-button px-5' onClick={()=>navigate("/dashboard/recipedata/new-recipe")}>Add New Item</button>
-        </div>
+        </div>:''}
+       
       </div>
      {/* filteration */}
       <div className="d-flex align-items-center gap-4 me-5 mb-3">
@@ -269,10 +285,21 @@ const RecipesList = () => {
                         <i className="fas fa-ellipsis-v"></i>
                       </button>
                       <ul className="dropdown-menu">
-                        <li><button className="dropdown-item" type="button"><i className="fa-solid fa-eye text-success"></i> View Recipe</button></li>
-                        <li><button className="dropdown-item" type="button" onClick={() => { setShowDeleteConfirmation(true); setRecipeToDelete(recipe.id); }}> 
-                          <i className="fa-solid fa-trash text-danger"></i> Delete Recipe </button></li>
-                        <li><button className="dropdown-item" type="button" onClick={()=>navigate(`/dashboard/recipedata/:${recipe.id}`)}><i className="fa-solid fa-pen-to-square text-warning"></i> Edit Recipe</button></li>
+                        <li><button className="dropdown-item" type="button" onClick={()=>{setViewRecipeId(recipe.id);setShowRecipe(true)}}><i className="fa-solid fa-eye text-success"></i> View Recipe</button></li>
+                        {/* Delete allow for admin */}
+                          {loginData?.userGroup!='SystemUser'?
+                          <li>
+                            <button className="dropdown-item" type="button" onClick={() => { setShowDeleteConfirmation(true); setRecipeToDelete(recipe.id); }}> 
+                          <i className="fa-solid fa-trash text-danger"></i> Delete Recipe </button>
+                          </li>
+                          :''}
+
+                           {/* Edit allow for admin */}
+                          {loginData?.userGroup!='SystemUser'?
+                        <li>
+                          <button className="dropdown-item" type="button" onClick={()=>navigate(`/dashboard/recipedata/:${recipe.id}`)}>
+                          <i className="fa-solid fa-pen-to-square text-warning"></i> Edit Recipe</button>
+                          </li>:''}
                       </ul>
                     </div>
                   </td>
@@ -294,6 +321,12 @@ const RecipesList = () => {
       
   {/* pagination */}
   <Pagination arrayOfPages={arrayOfPages} onPageChange={handlePageChange}/>
+  {/* view Recipe */}
+    {showRecipe&&<ViewRecipe 
+    onConfirm={AddToFavourite} 
+    closeModal={()=>setShowRecipe(false)} 
+    show={showRecipe} 
+    RecipeId={viewRecipeId}   />}
     </div>
   );
 };

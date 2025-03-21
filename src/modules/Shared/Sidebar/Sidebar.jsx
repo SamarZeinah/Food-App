@@ -4,7 +4,10 @@ import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import dashlogo from '../../../assets/dashlogo.png'
 import ChangePassModal from '../../Authentication/Change-pass/ChangePass';
 import columnsgap from '../../../assets/columns-gap.png'
-const SideBar = () => {
+
+const SideBar = ({loginData}) => {
+  console.log("logindata from sidebar",loginData?.userGroup);
+
   let navigate=useNavigate()
   const LogOut=()=>{
     localStorage.removeItem('token');
@@ -38,10 +41,26 @@ const SideBar = () => {
       <Menu>
         <MenuItem icon={<img onClick={collapsedfun} src={dashlogo} alt='dashlogo'/>}className='logo-li my-3'> </MenuItem>
         <MenuItem component={<Link to="/dashboard"/>} icon={<i className="fa-solid fa-house"  ></i>}> Home </MenuItem>
-        <MenuItem  component={<Link to={"/dashboard/users"}/>}icon={<i className="fa-solid fa-users"  ></i>} >users </MenuItem>
-        {/* <MenuItem  component={<Link to={"/dashboard/recipes"}/>}><img className='me-3' src={columnsgap}/>   Recipes </MenuItem> */}
+
+        {/* users allow for admin */}
+        {loginData?.userGroup!='SystemUser'?
+        
+          <MenuItem  component={<Link to={"/dashboard/users"}/>}icon={<i className="fa-solid fa-users"  ></i>} >users </MenuItem>
+        :''}
+
         <MenuItem  component={<Link to={"/dashboard/recipes"}/> }icon={<i className="fa-solid fa-calendar-days"  ></i>}>Recipes </MenuItem>
-        <MenuItem  component={<Link to={"/dashboard/category"}/>}icon={<i className="fa-solid fa-calendar-days"  ></i>}> Categories </MenuItem>
+        
+        {/* Categories allow for admin */}
+        {loginData?.userGroup!='SystemUser'?
+                <MenuItem  component={<Link to={"/dashboard/category"}/>}icon={<i className="fa-solid fa-calendar-days"  ></i>}> Categories </MenuItem>
+          :''}
+
+        {/* Fav allow for user */}
+        {loginData?.userGroup=='SystemUser'?
+                <MenuItem  component={<Link to={"/dashboard/favorites"}/>}icon={<i className="fa-solid fa-heart"  ></i>}> Favorites </MenuItem>
+            :''}
+          
+
         <MenuItem onClick={()=>setShowChangePass(true)} icon={<i className="fa-solid fa-lock-open"></i>}> Change Password </MenuItem>
         <MenuItem className='mt-5' onClick={LogOut} icon={<i className="fa-solid fa-right-from-bracket"  ></i>}> Logout </MenuItem>
       </Menu>
@@ -53,6 +72,4 @@ const SideBar = () => {
 }
 
 export default SideBar
-
-
 

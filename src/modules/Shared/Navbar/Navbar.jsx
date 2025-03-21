@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ChangePassModal from '../../Authentication/Change-pass/ChangePass';
 import { useState } from 'react';
 const Navbar = ({loginData}) => {
-  console.log("logindata from sidebar",loginData);
+  console.log("logindata from Navbar",loginData);
   const navigate=useNavigate();
   const[showChangePass,setShowChangePass]=useState(false);
   return (

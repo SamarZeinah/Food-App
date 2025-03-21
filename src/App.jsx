@@ -19,6 +19,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { useEffect, useState } from 'react'
 import { jwtDecode } from 'jwt-decode'
 import ProtectedRoute from './modules/Shared/ProtectedRoute/ProtectedRoute'
+import Favorites from './modules/Favorites/Favorites'
 function App() {
 // const[loginData,setloginData]=useState(null);
 const[loginData,setloginData]=useState(()=>{
@@ -30,7 +31,7 @@ const[loginData,setloginData]=useState(()=>{
 const saveLoginData=()=>{
   const encodedToken=localStorage.getItem('token');
   const decodedToken=jwtDecode(encodedToken);
-  console.log("decodedToken",decodedToken);
+  localStorage.setItem('decodedToken',JSON.stringify(decodedToken));
   setloginData(decodedToken);
 }
 useEffect(()=>{
@@ -66,6 +67,7 @@ useEffect(()=>{
         { path: 'recipedata/:recipeId', element: <RecipesData /> },
         { path: 'categories', element: <CategoriesData /> },
         { path: 'category', element: <CategoriesList /> },
+        { path: 'favorites', element: <Favorites /> },
         { path: 'users', element: <UsersList /> },
       ]
     },

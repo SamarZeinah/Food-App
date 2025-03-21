@@ -27,6 +27,7 @@ const response=await publicAxiosInstance.post(USER_URLS.LOGIN,data)
 
 console.log(response);
 localStorage.setItem('token',response.data.token);
+localStorage.setItem("user", JSON.stringify(response.data.user));
 
   toast.success(response.data.message||"Logged Successfully", {
   position: "top-center",
@@ -39,8 +40,8 @@ localStorage.setItem('token',response.data.token);
   theme: "light",
   transition: Bounce,
   });
-  saveLoginData()
-navigate('/dashboard')
+  saveLoginData();
+  navigate('/dashboard')
 
 }
 //error
