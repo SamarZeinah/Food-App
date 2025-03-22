@@ -2,7 +2,7 @@ import React from 'react'
 import Header from '../Header/Header'
 import Navbar from '../Navbar/Navbar'
 import { Outlet } from 'react-router-dom'
-import SideBar from '../SideBar/sidebar'
+import SideBar from '../SideBar/sidebar.jsx'
 const MasterLayout = ({getLoginData}) => {
   console.log("getLoginData from masterlayout",getLoginData);
   return (
