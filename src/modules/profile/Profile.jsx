@@ -14,8 +14,10 @@ import {
 import { ImageUpload } from '../Shared/ImageUpload/Imageupload';
 import { baseUrl, Photo_baseUrl, privateAxiosInstance } from '../../Services/urls';
 import { toast } from 'react-toastify';
+
 const Profile = ({getLoginData}) => {
   const loginData=getLoginData();
+  console.log("loginData from",loginData);
 
   const [userData, setUserData] = useState(null);
   console.log("userData Profile",userData);
@@ -43,10 +45,12 @@ const Profile = ({getLoginData}) => {
         console.error("Error fetching user data:", error);
       }
     };
+    
     useEffect(() => {
         GetCurrentUser();
     }, []);
-
+  
+  
   // Set default values once data is available
   useEffect(() => {
     if (userData) {
