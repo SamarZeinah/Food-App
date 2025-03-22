@@ -315,4 +315,9 @@
       border-radius: 50%;
       object-fit: cover; 
     }
-    
+    .update-img {
+      width: 140px;  
+      height: 140px;
+      border-radius: 100%;
+      object-fit: cover;
+    }

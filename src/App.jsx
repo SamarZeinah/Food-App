@@ -74,7 +74,7 @@ useEffect(()=>{
         { path: 'category', element: <CategoriesList /> },
         { path: 'favorites', element: <Favorites /> },
         { path: 'users', element: <UsersList /> },
-        { path: 'profile', element: <Profile /> },
+        { path: 'profile', element: <Profile getLoginData={getLoginData}/> },
       ]
     },
   
