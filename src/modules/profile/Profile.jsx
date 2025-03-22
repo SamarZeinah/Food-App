@@ -14,11 +14,11 @@ import {
 import { ImageUpload } from '../Shared/ImageUpload/Imageupload';
 import { baseUrl, Photo_baseUrl, privateAxiosInstance } from '../../Services/urls';
 import { toast } from 'react-toastify';
-
 const Profile = ({getLoginData}) => {
   const loginData=getLoginData();
 
   const [userData, setUserData] = useState(null);
+  console.log("userData Profile",userData);
   const [profileImage, setProfileImage] = useState(""); 
   console.log("profileImage",profileImage);
   const { 
@@ -31,7 +31,6 @@ const Profile = ({getLoginData}) => {
   });
 
   // Fetch current user data
-  
     const GetCurrentUser = async () => {
       try {
         const response = await privateAxiosInstance(`${baseUrl}/Users/currentUser`);
@@ -47,7 +46,6 @@ const Profile = ({getLoginData}) => {
     useEffect(() => {
         GetCurrentUser();
     }, []);
-    
 
   // Set default values once data is available
   useEffect(() => {
@@ -201,6 +199,4 @@ const onSubmit = async (data) => {
 };
 
 export default Profile;
-
-
 
