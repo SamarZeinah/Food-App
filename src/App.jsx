@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, createHashRouter, RouterProvider } from 'react-router-dom'
 import AuthLayout from './modules/Shared/AuthLayout/AuthLayout'
 import Login from './modules/Authentication/Login/Login'
 import Register from './modules/Authentication/Register/Register'
@@ -45,7 +45,7 @@ useEffect(()=>{
   }
 },[])
 
-  const routes = createBrowserRouter([
+  const routes = createHashRouter([
     {
       path: '',
       element: <AuthLayout />,
