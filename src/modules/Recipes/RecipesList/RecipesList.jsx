@@ -277,7 +277,9 @@ console.log("showRecipe",showRecipe)
                   <td>{recipe.price}$</td>
                   <td>{recipe.description}</td>
                   <td>{recipe.tag.name}</td>
-                  <td>{recipe.category[0].name}</td>
+                  {/* <td>{recipe.category[0].name}</td> */}
+                  <td>{recipe.category.map((cat)=>`${cat.name},`)}</td>
+
 
                   <td>
                     <div className="dropdown">

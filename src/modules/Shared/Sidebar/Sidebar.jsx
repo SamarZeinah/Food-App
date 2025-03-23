@@ -46,19 +46,19 @@ const SideBar = ({getLoginData}) => {
         {/* users allow for admin */}
         {loginData?.userGroup!='SystemUser'?
         
-          <MenuItem  component={<Link to={"/dashboard/users"}/>}icon={<i className="fa-solid fa-users"  ></i>} >users </MenuItem>
+          <MenuItem  component={<Link to={"users"}/>}icon={<i className="fa-solid fa-users"  ></i>} >users </MenuItem>
         :''}
 
-        <MenuItem  component={<Link to={"/dashboard/recipes"}/> }icon={<i className="fa-solid fa-calendar-days"  ></i>}>Recipes </MenuItem>
+        <MenuItem  component={<Link to={"recipes"}/> }icon={<i className="fa-solid fa-calendar-days"  ></i>}>Recipes </MenuItem>
         
         {/* Categories allow for admin */}
         {loginData?.userGroup!='SystemUser'?
-                <MenuItem  component={<Link to={"/dashboard/category"}/>}icon={<i className="fa-solid fa-calendar-days"  ></i>}> Categories </MenuItem>
+                <MenuItem  component={<Link to={"category"}/>}icon={<i className="fa-solid fa-calendar-days"  ></i>}> Categories </MenuItem>
           :''}
 
         {/* Fav allow for user */}
         {loginData?.userGroup=='SystemUser'?
-                <MenuItem  component={<Link to={"/dashboard/favorites"}/>}icon={<i className="fa-solid fa-heart"  ></i>}> Favorites </MenuItem>
+                <MenuItem  component={<Link to={"favorites"}/>}icon={<i className="fa-solid fa-heart"  ></i>}> Favorites </MenuItem>
             :''}
           
 
