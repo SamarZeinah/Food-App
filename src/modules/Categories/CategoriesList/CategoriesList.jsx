@@ -10,6 +10,7 @@ import DeleteConfirmation from '../../Shared/DeleteConfirmation/DeleteConfirmati
 import { useForm } from 'react-hook-form'
 import AddModal from '../../Shared/AddModal/AddModal';
 import Pagination from '../../Shared/Pagination/Pagination'
+import ViewCategory from './ViewCategory'
 const CategoriesList = () => {
 
 const[categoriesList,setcategoriesList]=useState([]);
@@ -20,6 +21,8 @@ const[categoriesList,setcategoriesList]=useState([]);
   const [categoryToEdit, setCategoryToEdit] = useState(null);
   const[arrayOfPages,setArrayOfPages]=useState([]);
   const[name,SetName]=useState("");
+  const[CategoryId,setCategoryId]=useState("")
+    const[showCategory,setShowCategory]=useState(false);
 const{register,formState:{errors,isSubmitting},handleSubmit,setValue,reset}=useForm()
 
 const OnSubmit=async(data)=>{
@@ -133,9 +136,10 @@ const getNameValue=(e)=>{
       <table className="table">
         <thead >
           <tr >
-            <th  scope="col" >Id</th>
+            {/* <th  scope="col" >Id</th> */}
             <th scope="col">Name</th>
             <th scope="col">Creation Date</th>
+            <th scope="col">modification Date</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
@@ -149,9 +153,10 @@ const getNameValue=(e)=>{
          ):
               categoriesList.length>0?categoriesList.map((category)=>
                 <tr key={category.id || index}>
-                <th scope="row">{category.id}</th>
+                {/* <th scope="row">{category.id}</th> */}
                 <td>{category.name}</td>
                 <td>{category.creationDate}</td>
+                <td>{category.modificationDate}</td>
                 <td>
                 <div className="dropdown">
                 <button className="btn dropdown border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -159,7 +164,9 @@ const getNameValue=(e)=>{
                 </button>
     
                   <ul className="dropdown-menu   ">
-                    <li><button className="dropdown-item" type="button"><i className="fa-solid fa-eye text-success"></i> View Category</button></li>
+                    {/* <li><button className="dropdown-item" type="button"><i className="fa-solid fa-eye text-success"></i> View Category</button></li> */}
+                    <li><button className="dropdown-item" type="button" onClick={()=>{setCategoryId(category.id);setShowCategory(true)}}><i className="fa-solid fa-eye text-success"></i>View Category</button></li>
+
                     <li><button className="dropdown-item" type="button" onClick={()=>{setShowDeleteConfirmation(true);setCategoryToDelete(category.id);}}> <i className="fa-solid fa-trash text-danger"></i> Delete Category</button></li>
                     <li><button className="dropdown-item" type="button" onClick={()=>{setCategoryToEdit(category.id);setValue('name', category.name);setShowAddModal(true);}}><i className="fa-solid fa-pen-to-square text-warning"  ></i> Edit Category</button></li>
                   </ul>
@@ -225,6 +232,11 @@ const getNameValue=(e)=>{
 
     {/* pagination */}
     <Pagination arrayOfPages={arrayOfPages} onPageChange={handlePageChange}/>
+    {showCategory&&<ViewCategory 
+    // onConfirm={AddToFavourite} 
+    closeModal={()=>setShowCategory(false)} 
+    show={showCategory} 
+    CategoryId={CategoryId}   />}
     </div>
     
   )

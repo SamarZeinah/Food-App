@@ -4,11 +4,12 @@ import Header from '../../Shared/Header/Header';
 import axios from 'axios';
 import NoData from '../../Shared/NoData/NoData';
 import Fallback_img from '../../../assets/fallback image.jpg'
+import Profile_img from '../../../assets/profile.webp'
 import { toast } from 'react-toastify';
 import { baseUrl, Photo_baseUrl, privateAxiosInstance, RECIPES_LIST } from '../../../Services/urls';
 import DeleteConfirmation from '../../Shared/DeleteConfirmation/DeleteConfirmation';
 import Pagination from '../../Shared/Pagination/Pagination';
-
+import ViewUser from './ViewUser';
 
 const UsersList = () => {
   const [usersList, setUsersList] = useState([]);
@@ -21,7 +22,9 @@ const UsersList = () => {
   const[emailValue,setEmailValue]=useState("");
   const[groupValue,setGroupValue]=useState("");
   const[countryValue,setCountryValue]=useState("");
-
+  const[viewUserId,setViewUserId]=useState("")
+  const[showUser,setShowUser]=useState(false);
+  console.log("viewUserId",viewUserId);
   // Fetch Users
   const GetUsers = async (pageSize,pageNumber,userName,email,country,groups) => {
     try {
@@ -191,14 +194,14 @@ const UsersList = () => {
                   <td>
                     {user.imagePath ? (
                       <img
-                        className='img-fluid recipeImg'
+                        className=' rounded-circle recipeImg'
                         src={`${Photo_baseUrl}/${user.imagePath}`}
                         alt='user photo'
                       />
                     ) : (
                       <span><img 
-                      className='img-fluid recipeImg'
-                      src={Fallback_img}/></span>
+                      className='rounded-circle recipeImg'
+                      src={Profile_img}/></span>
                     )}
                   </td>
                   <td>{user.email}</td>
@@ -211,10 +214,11 @@ const UsersList = () => {
                         <i className="fas fa-ellipsis-v"></i>
                       </button>
                       <ul className="dropdown-menu">
-                        <li><button className="dropdown-item" type="button"><i className="fa-solid fa-eye text-success"></i> View User</button></li>
+                        <li><button className="dropdown-item" type="button" onClick={()=>{setViewUserId(user.id);setShowUser(true)}}><i className="fa-solid fa-eye text-success"></i> View User</button></li>
+
                         <li><button className="dropdown-item" type="button" onClick={() => { setShowDeleteConfirmation(true); setUserToDelete(user.id); }}> 
                           <i className="fa-solid fa-trash text-danger"></i> Delete User </button></li>
-                        <li><button className="dropdown-item" type="button"><i className="fa-solid fa-pen-to-square text-warning"></i> Edit User</button></li>
+                        {/* <li><button className="dropdown-item" type="button"><i className="fa-solid fa-pen-to-square text-warning"></i> Edit User</button></li> */}
                       </ul>
                     </div>
                   </td>
@@ -234,7 +238,12 @@ const UsersList = () => {
       )}
       {/* pagination */}
   <Pagination arrayOfPages={arrayOfPages} onPageChange={handlePageChange}/>
-
+ {/* view User */}
+ {showUser&&<ViewUser 
+    // onConfirm={AddToFavourite} 
+    closeModal={()=>setShowUser(false)} 
+    show={showUser} 
+    UserId={viewUserId}   />}
     </div>
   );
 };

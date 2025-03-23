@@ -321,3 +321,10 @@
       border-radius: 100%;
       object-fit: cover;
     }
+.user-image {
+  width: 150px;
+  height: 150px; 
+  object-fit: cover;
+  border-radius: 50%; 
+  margin-bottom: 20px; 
+}
