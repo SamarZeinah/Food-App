@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import {  publicAxiosInstance, USER_URLS } from '../../../Services/urls'
 import { EMAIL_VALIDATION } from '../../../Services/validations'
 import { PASSWORD_VALIDATION } from '../../../Services/validations'
+import { Link } from 'react-router-dom'
 
 const Login = ({saveLoginData}) => {
 
@@ -113,8 +114,8 @@ console.log(error.response.data.message);
 
 
                 <div className='d-flex justify-content-between mt-3'>
-                <a  className='text-dark text-decoration-none' href='register'><p >Register Now?</p></a>
-                 <a className='base-color text-decoration-none'  href='forgetpass'><p >Forgot Password?</p></a> 
+                <Link  className='text-dark text-decoration-none' to='/register'><p >Register Now?</p></Link>
+                 <Link className='base-color text-decoration-none'  to='/forgetpass'><p >Forgot Password?</p></Link> 
                 </div>
                 <button disabled={isSubmitting} className='base-button '>
                   {isSubmitting?"Loading...":"Login"}
