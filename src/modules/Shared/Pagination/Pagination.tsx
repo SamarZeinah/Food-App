@@ -32,9 +32,15 @@ const handlePreviousGroup = () => {
         </li>
        {arrayOfPages?.slice(startPageIndex, endPageIndex).map((pageNumber)=>{
         return(
-          <li className="page-item" key={pageNumber} onClick={()=>onPageChange(pageNumber)}>
-            <a className="page-link" href="#">{pageNumber}</a>
-          </li>
+          // <li className="page-item" key={pageNumber} onClick={()=>onPageChange(pageNumber)}>
+          //   <a className="page-link" href="#">{pageNumber}</a>
+          // </li>
+          <li className="page-item" key={pageNumber}>
+          <button className="page-link" onClick={() => onPageChange(pageNumber)}>
+            {pageNumber}
+          </button>
+        </li>
+
         )
        })}
     <li className={`page-item ${currentPageGroup === totalGroups - 1 ? 'disabled' : ''}pageItem`}>
