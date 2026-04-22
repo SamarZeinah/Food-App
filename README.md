@@ -3,7 +3,7 @@
 A full-featured **Food Management Dashboard** built with **React (Vite)**, designed to manage recipes, categories, users, and favorites with a clean and modern UI.
 
 <div align="center">
-  <a href="#" target="_blank">
+  <a href="https://project-management-syst.netlify.app/" target="_blank">
     <img alt="Live Demo" src="https://food-appg.netlify.app/"/>
   </a>
 </div>
